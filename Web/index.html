@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能停车场监控系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🅿️ 智能停车场监控系统</h1>
+            <div class="status-bar">
+                <span id="connectionStatus" class="status disconnected">● 未连接</span>
+                <span id="updateTime">最后更新: --:--:--</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="parking-grid-container">
+                <h2>停车场实时状态</h2>
+                <div class="parking-grid" id="parkingGrid">
+                    <!-- 网格将通过JavaScript动态生成 -->
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="legend-color empty"></span>
+                        <span>空车位</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color occupied"></span>
+                        <span>已占用</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color road"></span>
+                        <span>道路</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color entrance"></span>
+                        <span>入口</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color exit"></span>
+                        <span>出口</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="stats-card">
+                    <h3>📊 统计信息</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">总车位数:</span>
+                        <span class="stat-value" id="totalSpots">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">空余车位数:</span>
+                        <span class="stat-value" id="emptySpots">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">已使用:</span>
+                        <span class="stat-value" id="occupiedSpots">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">使用率:</span>
+                        <span class="stat-value" id="usageRate">--</span>
+                    </div>
+                </div>
+
+                <div class="plate-card">
+                    <h3>🚗 车牌与计费</h3>
+                    <div class="plate-item">
+                        <span class="plate-label">license_plate1:</span>
+                        <span class="plate-value" id="plate1">--</span>
+                    </div>
+                    <div class="plate-item">
+                        <span class="plate-label">license_plate2:</span>
+                        <span class="plate-value" id="plate2">--</span>
+                    </div>
+                    <div class="plate-item">
+                        <span class="plate-label">费用(元):</span>
+                        <span class="plate-value" id="checkoutFee">--</span>
+                    </div>
+                </div>
+
+                <div class="log-card">
+                    <h3>📝 操作日志</h3>
+                    <div class="log-content" id="logContent">
+                        <div class="log-item">系统初始化完成...</div>
+                    </div>
+                </div>
+
+                <div class="control-card">
+                    <h3>⚙️ 手动控制</h3>
+                    <button id="refreshBtn" class="btn primary">🔄 刷新数据</button>
+                    <button id="simulateBtn" class="btn secondary">🎲 模拟数据</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>智能停车场管理系统 v1.0 | 基于 STM32F103C8T6 + 阿里云IoT</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
