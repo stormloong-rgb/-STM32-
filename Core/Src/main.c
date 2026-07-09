@@ -199,14 +199,14 @@ uint8_t last_display_state = 0;
 ESP01S_ConfigTypeDef esp01s_config = {
     .ssid = "Ciallo",                                          // WiFi热点名称
     .password = "0d000721",                                    // WiFi密码
-    .mqtt_server = "iot-06z00i4rmqe2hzc.mqtt.iothub.aliyuncs.com",  // 阿里云MQTT服务器地址
-    .mqtt_port = 1883,                                         // MQTT端口
+    .mqtt_server = "",  // 阿里云MQTT服务器地址
+    .mqtt_port = ,                                         // MQTT端口
     /* 与阿里云控制台/串口实测一致：timestamp 与 password_mqtt 必须同批生成 */
-    .client_id = "k1uoeMNdaXi.parking|securemode=2,signmethod=hmacsha256,timestamp=1776835489362|",
-    .username = "parking&k1uoeMNdaXi",                         // 用户名
-    .password_mqtt = "06c905c82d5c2900ed7af65dfa445e119c56c29aa79c5f754ce9ca2773734ac9",  // MQTT密码（与串口实测一致）
-    .publish_topic = "/sys/k1uoeMNdaXi/parking/thing/event/property/post",       // 发布主题
-    .subscribe_topic = "/sys/k1uoeMNdaXi/parking/thing/service/property/set"      // 订阅主题
+    .client_id = "",
+    .username = "",                         // 用户名
+    .password_mqtt = "",  // MQTT密码（与串口实测一致）
+    .publish_topic = "",       // 发布主题
+    .subscribe_topic = ""      // 订阅主题
 };
 
 /* USER CODE END PV */
